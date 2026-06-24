@@ -1,8 +1,7 @@
-import {
-  HelpCircle,
-  ChevronRight,
-  ShieldCheck,
-} from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { HelpCircle, ChevronDown, ShieldCheck } from "lucide-react";
 import { Reveal } from "./Motion";
 
 const faqs = [
@@ -25,6 +24,12 @@ const faqs = [
 ];
 
 export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  function toggleFaq(index: number) {
+    setOpenIndex((current) => (current === index ? null : index));
+  }
+
   return (
     <section
       id="faq"
@@ -35,12 +40,7 @@ export default function FAQSection() {
           "linear-gradient(180deg,#ffffff 0%,#fff8f1 50%,#f6efe8 100%)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1300px",
-          margin: "0 auto",
-        }}
-      >
+      <div style={{ maxWidth: "1300px", margin: "0 auto" }}>
         <Reveal>
           <div
             style={{
@@ -97,83 +97,112 @@ export default function FAQSection() {
         <div
           style={{
             display: "grid",
-            gap: "20px",
+            gap: "18px",
             maxWidth: "1000px",
             margin: "0 auto",
           }}
         >
-          {faqs.map((faq, index) => (
-            <Reveal key={faq.q} delay={index * 0.08}>
-              <div
-                style={{
-                  background: "#fff",
-                  borderRadius: "24px",
-                  padding: "28px",
-                  border: "1px solid rgba(245,124,0,.12)",
-                  boxShadow: "0 15px 40px rgba(0,0,0,.05)",
-                  transition: ".3s",
-                }}
-                className="hover-lift"
-              >
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+
+            return (
+              <Reveal key={faq.q} delay={index * 0.08}>
                 <div
+                  className={`faq-card ${isOpen ? "faq-card-open" : ""}`}
                   style={{
-                    display: "flex",
-                    gap: "16px",
-                    alignItems: "flex-start",
+                    background: "#fff",
+                    borderRadius: "24px",
+                    border: isOpen
+                      ? "1px solid rgba(245,124,0,.35)"
+                      : "1px solid rgba(245,124,0,.12)",
+                    boxShadow: isOpen
+                      ? "0 22px 55px rgba(93,64,55,.12)"
+                      : "0 15px 40px rgba(0,0,0,.05)",
+                    overflow: "hidden",
+                    transition: "all .3s ease",
                   }}
                 >
-                  <div
+                  <button
+                    type="button"
+                    onClick={() => toggleFaq(index)}
+                    aria-expanded={isOpen}
                     style={{
-                      width: "52px",
-                      height: "52px",
-                      borderRadius: "16px",
-                      background:
-                        "linear-gradient(135deg,#F57C00,#FF9800)",
+                      width: "100%",
+                      border: "none",
+                      background: "transparent",
+                      padding: "24px 26px",
+                      cursor: "pointer",
                       display: "flex",
+                      gap: "16px",
                       alignItems: "center",
-                      justifyContent: "center",
-                      color: "#fff",
-                      flexShrink: 0,
+                      textAlign: "left",
                     }}
                   >
-                    <ChevronRight size={24} />
-                  </div>
+                    <span
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "16px",
+                        background: isOpen
+                          ? "linear-gradient(135deg,#F57C00,#FF9800)"
+                          : "#FFF4E8",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: isOpen ? "#fff" : "#F57C00",
+                        flexShrink: 0,
+                        transition: "all .3s ease",
+                      }}
+                    >
+                      <ChevronDown
+                        size={24}
+                        style={{
+                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                          transition: "transform .3s ease",
+                        }}
+                      />
+                    </span>
 
-                  <div>
                     <strong
                       style={{
+                        flex: 1,
                         display: "block",
                         color: "#5D4037",
                         fontSize: "1.15rem",
-                        marginBottom: "10px",
+                        lineHeight: 1.4,
                       }}
                     >
                       {faq.q}
                     </strong>
+                  </button>
 
+                  <div
+                    style={{
+                      maxHeight: isOpen ? "180px" : "0px",
+                      opacity: isOpen ? 1 : 0,
+                      overflow: "hidden",
+                      transition: "max-height .35s ease, opacity .25s ease",
+                    }}
+                  >
                     <p
                       style={{
                         color: "#6D4C41",
                         lineHeight: 1.8,
-                        margin: 0,
+                        margin: "0",
+                        padding: "0 28px 26px 92px",
                       }}
                     >
                       {faq.a}
                     </p>
                   </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
 
         <Reveal delay={0.3}>
-          <div
-            style={{
-              marginTop: "50px",
-              textAlign: "center",
-            }}
-          >
+          <div style={{ marginTop: "50px", textAlign: "center" }}>
             <div
               style={{
                 display: "inline-flex",
@@ -192,6 +221,38 @@ export default function FAQSection() {
           </div>
         </Reveal>
       </div>
+
+      <style>{`
+        .faq-card:hover {
+          transform: translateY(-3px);
+        }
+
+        @media (max-width: 640px) {
+          #faq {
+            padding: 76px 18px !important;
+          }
+
+          .faq-card button {
+            padding: 20px 18px !important;
+            gap: 12px !important;
+          }
+
+          .faq-card button span {
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 14px !important;
+          }
+
+          .faq-card strong {
+            font-size: 1rem !important;
+          }
+
+          .faq-card p {
+            padding: 0 20px 22px 74px !important;
+            font-size: .95rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
