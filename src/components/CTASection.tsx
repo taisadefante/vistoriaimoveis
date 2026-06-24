@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, ShieldCheck, Sparkles, FileCheck2 } from "lucide-react";
+import { ShieldCheck, Sparkles, FileCheck2 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Reveal } from "./Motion";
 
@@ -13,43 +13,55 @@ export default function CTASection() {
       <style jsx>{`
         .cta-section {
           width: 100%;
-          padding: 100px 5.8vw;
+          padding: 80px 20px;
           background: linear-gradient(180deg, #f6efe8 0%, #fff8f1 45%, #fff 100%);
           overflow: hidden;
         }
 
         .cta-container {
           width: 100%;
-          max-width: 1320px;
+          max-width: 1180px;
           margin: 0 auto;
         }
 
         .cta-card {
           position: relative;
           overflow: hidden;
-          border-radius: 36px;
-          padding: 70px 6vw;
-          background: linear-gradient(135deg, #5d4037 0%, #8a4d2a 48%, #f57c00 100%);
+          border-radius: 30px;
+          padding: 58px 56px;
+          background: linear-gradient(135deg, #5d4037 0%, #8a4d2a 48%, #e66f00 100%);
           color: #fff;
-          box-shadow: 0 30px 80px rgba(93, 64, 55, 0.22);
+          box-shadow: 0 24px 60px rgba(93, 64, 55, 0.2);
           border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .cta-card::before {
+          content: "";
+          position: absolute;
+          width: 360px;
+          height: 360px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.12);
+          right: -140px;
+          top: -140px;
+          filter: blur(10px);
         }
 
         .cta-content {
           position: relative;
           z-index: 2;
-          max-width: 880px;
+          max-width: 760px;
         }
 
         .cta-badge {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 10px 18px;
+          padding: 9px 16px;
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.14);
           border: 1px solid rgba(255, 255, 255, 0.25);
-          font-size: 0.8rem;
+          font-size: 0.76rem;
           font-weight: 900;
           letter-spacing: 0.7px;
           text-transform: uppercase;
@@ -57,20 +69,21 @@ export default function CTASection() {
         }
 
         .cta-title {
-          font-size: clamp(2.3rem, 4.6vw, 4.8rem);
-          line-height: 1.03;
-          font-weight: 950;
-          letter-spacing: -2.5px;
-          margin: 0 0 22px;
+          font-size: clamp(2rem, 3.3vw, 3.8rem);
+          line-height: 1.08;
+          font-weight: 900;
+          letter-spacing: -1.8px;
+          margin: 0 0 20px;
+          max-width: 780px;
         }
 
         .cta-text {
-          font-size: 1.12rem;
-          line-height: 1.75;
+          font-size: 1.05rem;
+          line-height: 1.7;
           font-weight: 600;
           opacity: 0.95;
-          max-width: 760px;
-          margin: 0 0 34px;
+          max-width: 680px;
+          margin: 0 0 30px;
         }
 
         .cta-buttons {
@@ -78,33 +91,29 @@ export default function CTASection() {
           flex-wrap: wrap;
           gap: 14px;
           align-items: center;
-          margin-bottom: 34px;
+          margin-bottom: 30px;
         }
 
         .whatsapp-btn,
         .services-btn {
-          min-height: 58px;
+          min-height: 54px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
           gap: 10px;
-          padding: 16px 26px;
-          border-radius: 18px;
+          padding: 14px 24px;
+          border-radius: 16px;
           text-decoration: none;
-          font-weight: 950;
+          font-weight: 900;
           transition: all 0.25s ease;
+          font-size: 0.98rem;
         }
 
         .whatsapp-btn {
           background: linear-gradient(135deg, #fff3e0 0%, #ffb74d 100%);
           color: #4e2f21;
-          box-shadow: 0 18px 40px rgba(255, 183, 77, 0.34);
+          box-shadow: 0 16px 34px rgba(255, 183, 77, 0.3);
           border: 1px solid rgba(255, 255, 255, 0.7);
-        }
-
-        .whatsapp-btn:hover,
-        .services-btn:hover {
-          transform: translateY(-3px);
         }
 
         .services-btn {
@@ -113,33 +122,37 @@ export default function CTASection() {
           border: 1px solid rgba(255, 255, 255, 0.28);
         }
 
+        .whatsapp-btn:hover,
+        .services-btn:hover {
+          transform: translateY(-3px);
+        }
+
         .cta-tags {
           display: flex;
           flex-wrap: wrap;
-          gap: 12px;
+          gap: 10px;
         }
 
         .cta-tag {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 10px 14px;
+          padding: 9px 13px;
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.12);
           border: 1px solid rgba(255, 255, 255, 0.22);
-          font-size: 0.9rem;
+          font-size: 0.86rem;
           font-weight: 800;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .cta-section {
             padding: 70px 18px;
           }
 
           .cta-card {
+            padding: 48px 34px;
             border-radius: 26px;
-            padding: 46px 22px;
-            text-align: center;
           }
 
           .cta-content {
@@ -147,26 +160,60 @@ export default function CTASection() {
           }
 
           .cta-title {
-            font-size: clamp(2rem, 10vw, 3rem);
-            letter-spacing: -1.5px;
+            font-size: clamp(2rem, 7vw, 3rem);
+            letter-spacing: -1.3px;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .cta-section {
+            padding: 60px 14px;
+          }
+
+          .cta-card {
+            padding: 38px 20px;
+            border-radius: 24px;
+            text-align: center;
+          }
+
+          .cta-badge {
+            font-size: 0.68rem;
+            padding: 8px 13px;
+            margin-bottom: 18px;
+          }
+
+          .cta-title {
+            font-size: clamp(1.75rem, 8vw, 2.35rem);
+            line-height: 1.12;
+            letter-spacing: -1px;
           }
 
           .cta-text {
-            font-size: 1rem;
+            font-size: 0.98rem;
+            line-height: 1.65;
+            margin-bottom: 26px;
           }
 
           .cta-buttons {
             flex-direction: column;
             align-items: stretch;
+            margin-bottom: 26px;
           }
 
           .whatsapp-btn,
           .services-btn {
             width: 100%;
+            min-height: 52px;
+            padding: 14px 18px;
+            font-size: 0.94rem;
           }
 
           .cta-tags {
             justify-content: center;
+          }
+
+          .cta-tag {
+            font-size: 0.8rem;
           }
         }
       `}</style>
@@ -176,12 +223,12 @@ export default function CTASection() {
           <div className="cta-card">
             <div className="cta-content">
               <span className="cta-badge">
-                <Sparkles size={18} />
+                <Sparkles size={16} />
                 Pronto para proteger seu imóvel?
               </span>
 
               <h2 className="cta-title">
-                Agende sua vistoria e receba tudo documentado com clareza.
+                Agende sua vistoria com clareza, segurança e tudo documentado.
               </h2>
 
               <p className="cta-text">
@@ -196,7 +243,7 @@ export default function CTASection() {
                   rel="noopener noreferrer"
                   className="whatsapp-btn"
                 >
-                  <FaWhatsapp size={24} />
+                  <FaWhatsapp size={22} />
                   Quero agendar minha vistoria
                 </a>
 
@@ -207,17 +254,17 @@ export default function CTASection() {
 
               <div className="cta-tags">
                 <span className="cta-tag">
-                  <ShieldCheck size={18} />
+                  <ShieldCheck size={17} />
                   Mais segurança
                 </span>
 
                 <span className="cta-tag">
-                  <FileCheck2 size={18} />
+                  <FileCheck2 size={17} />
                   Laudo profissional
                 </span>
 
                 <span className="cta-tag">
-                  <Sparkles size={18} />
+                  <Sparkles size={17} />
                   Atendimento direto
                 </span>
               </div>
