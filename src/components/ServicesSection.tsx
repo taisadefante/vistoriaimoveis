@@ -74,163 +74,43 @@ export default function ServicesSection() {
     useState<(typeof services)[number] | null>(null);
 
   return (
-    <section
-      id="servicos"
-      style={{
-        width: "100%",
-        padding: "110px 5.8vw",
-        background: "#fff",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "1320px",
-          margin: "0 auto",
-        }}
-      >
+    <section id="servicos" className="services-section">
+      <div className="services-container">
         <Reveal>
-          <div
-            style={{
-              textAlign: "center",
-              maxWidth: "850px",
-              margin: "0 auto 70px",
-            }}
-          >
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "10px 18px",
-                borderRadius: "999px",
-                background: "#FFF4E8",
-                border: "1px solid rgba(245,124,0,.25)",
-                color: "#F57C00",
-                fontWeight: 800,
-                fontSize: ".8rem",
-                textTransform: "uppercase",
-                marginBottom: "18px",
-              }}
-            >
+          <div className="services-header">
+            <span className="services-badge">
               <BadgeCheck size={16} />
               Serviços
             </span>
 
-            <h2
-              style={{
-                fontSize: "clamp(2.2rem,4vw,4.5rem)",
-                lineHeight: 1.05,
-                color: "#5D4037",
-                fontWeight: 950,
-                letterSpacing: "-2px",
-                marginBottom: "18px",
-              }}
-            >
-              Vistorias completas para cada etapa do imóvel.
-            </h2>
+            <h2>Vistorias completas para cada etapa do imóvel.</h2>
 
-            <p
-              style={{
-                color: "#6D4C41",
-                fontSize: "1.1rem",
-                lineHeight: 1.8,
-                margin: 0,
-              }}
-            >
+            <p>
               Seja para locação, compra, venda ou imóveis comerciais, você
               recebe um relatório profissional com fotos e observações.
             </p>
           </div>
         </Reveal>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-            gap: "26px",
-          }}
-        >
+        <div className="services-grid">
           {services.map((service, index) => {
             const Icon = service.icon;
 
             return (
               <Reveal key={service.title} delay={index * 0.08}>
-                <div
-                  style={{
-                    height: "100%",
-                    background:
-                      "linear-gradient(180deg,#fff 0%,#fff9f3 100%)",
-                    borderRadius: "28px",
-                    padding: "32px",
-                    border: "1px solid rgba(245,124,0,.12)",
-                    boxShadow: "0 18px 45px rgba(0,0,0,.05)",
-                    transition: ".3s",
-                  }}
-                  className="hover-lift"
-                >
-                  <div
-                    style={{
-                      width: "65px",
-                      height: "65px",
-                      borderRadius: "18px",
-                      background: "linear-gradient(135deg,#F57C00,#FF9800)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#fff",
-                      marginBottom: "22px",
-                      boxShadow: "0 15px 30px rgba(245,124,0,.25)",
-                    }}
-                  >
+                <div className="service-card hover-lift">
+                  <div className="service-icon">
                     <Icon size={32} />
                   </div>
 
-                  <h3
-                    style={{
-                      color: "#5D4037",
-                      fontSize: "1.35rem",
-                      fontWeight: 900,
-                      marginBottom: "12px",
-                    }}
-                  >
-                    {service.title}
-                  </h3>
+                  <h3>{service.title}</h3>
 
-                  <p
-                    style={{
-                      color: "#6D4C41",
-                      lineHeight: 1.8,
-                      marginBottom: "24px",
-                    }}
-                  >
-                    {service.text}
-                  </p>
+                  <p>{service.text}</p>
 
                   <button
                     type="button"
                     onClick={() => setSelectedService(service)}
-                    style={{
-                      border: "none",
-                      background: "transparent",
-                      padding: 0,
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      color: "#F57C00",
-                      fontWeight: 900,
-                      fontSize: "1rem",
-                      transition: ".25s",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateX(5px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateX(0)";
-                    }}
+                    className="service-more-btn"
                   >
                     Saiba mais
                     <ArrowRight size={18} />
@@ -242,33 +122,10 @@ export default function ServicesSection() {
         </div>
 
         <Reveal delay={0.3}>
-          <div
-            style={{
-              marginTop: "60px",
-              background: "linear-gradient(90deg,#BF6A2A,#F57C00)",
-              borderRadius: "30px",
-              padding: "40px",
-              color: "#fff",
-              textAlign: "center",
-            }}
-          >
-            <h3
-              style={{
-                fontSize: "2rem",
-                fontWeight: 900,
-                marginBottom: "10px",
-              }}
-            >
-              Não deixe problemas passarem despercebidos.
-            </h3>
+          <div className="services-alert">
+            <h3>Não deixe problemas passarem despercebidos.</h3>
 
-            <p
-              style={{
-                fontSize: "1.05rem",
-                opacity: 0.95,
-                margin: 0,
-              }}
-            >
+            <p>
               Solicite uma vistoria profissional e tenha mais segurança na
               negociação.
             </p>
@@ -280,186 +137,407 @@ export default function ServicesSection() {
         <div
           role="dialog"
           aria-modal="true"
+          className="modal-overlay"
           onClick={() => setSelectedService(null)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(44,28,22,.62)",
-            backdropFilter: "blur(8px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "24px",
-          }}
         >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: "100%",
-              maxWidth: "760px",
-              background:
-                "linear-gradient(180deg,#FFFFFF 0%,#FFF8F1 100%)",
-              borderRadius: "30px",
-              padding: "34px",
-              position: "relative",
-              boxShadow: "0 35px 90px rgba(0,0,0,.28)",
-              border: "1px solid rgba(245,124,0,.18)",
-              animation: "modalEnter .25s ease",
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => setSelectedService(null)}
-              aria-label="Fechar modal"
-              style={{
-                position: "absolute",
-                top: "18px",
-                right: "18px",
-                width: "42px",
-                height: "42px",
-                borderRadius: "14px",
-                border: "1px solid rgba(93,64,55,.12)",
-                background: "#fff",
-                color: "#5D4037",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-            >
-              <X size={22} />
-            </button>
+          <div className="modal-scroll">
+            <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                onClick={() => setSelectedService(null)}
+                aria-label="Fechar modal"
+                className="modal-close"
+              >
+                <X size={22} />
+              </button>
 
-            <div
-              style={{
-                width: "70px",
-                height: "70px",
-                borderRadius: "22px",
-                background: "linear-gradient(135deg,#F57C00,#FF9800)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                marginBottom: "24px",
-                boxShadow: "0 15px 35px rgba(245,124,0,.28)",
-              }}
-            >
-              {(() => {
-                const Icon = selectedService.icon;
-                return <Icon size={36} />;
-              })()}
+              <div className="modal-icon">
+                {(() => {
+                  const Icon = selectedService.icon;
+                  return <Icon size={34} />;
+                })()}
+              </div>
+
+              <span className="modal-badge">
+                <BadgeCheck size={16} />
+                Detalhes do serviço
+              </span>
+
+              <h3>{selectedService.title}</h3>
+
+              <p className="modal-text">{selectedService.fullText}</p>
+
+              <div className="modal-items">
+                {selectedService.items.map((item) => (
+                  <div key={item} className="modal-item">
+                    <CheckCircle2 size={20} />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="https://wa.me/5521981080434"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-whatsapp"
+              >
+                <MessageCircle size={21} />
+                Solicitar este serviço pelo WhatsApp
+              </a>
             </div>
-
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                color: "#F57C00",
-                fontSize: ".8rem",
-                fontWeight: 900,
-                letterSpacing: ".7px",
-                textTransform: "uppercase",
-                marginBottom: "12px",
-              }}
-            >
-              <BadgeCheck size={16} />
-              Detalhes do serviço
-            </span>
-
-            <h3
-              style={{
-                color: "#5D4037",
-                fontSize: "clamp(2rem,4vw,3rem)",
-                lineHeight: 1.05,
-                fontWeight: 950,
-                letterSpacing: "-1px",
-                margin: "0 0 18px",
-              }}
-            >
-              {selectedService.title}
-            </h3>
-
-            <p
-              style={{
-                color: "#6D4C41",
-                fontSize: "1.08rem",
-                lineHeight: 1.8,
-                fontWeight: 600,
-                margin: "0 0 26px",
-              }}
-            >
-              {selectedService.fullText}
-            </p>
-
-            <div
-              style={{
-                display: "grid",
-                gap: "12px",
-                marginBottom: "30px",
-              }}
-            >
-              {selectedService.items.map((item) => (
-                <div
-                  key={item}
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "10px",
-                    color: "#5D4037",
-                    fontWeight: 800,
-                    lineHeight: 1.5,
-                  }}
-                >
-                  <CheckCircle2
-                    size={20}
-                    color="#F57C00"
-                    style={{ flexShrink: 0, marginTop: "2px" }}
-                  />
-                  {item}
-                </div>
-              ))}
-            </div>
-
-            <a
-              href="https://wa.me/5521981080434"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "10px",
-                width: "100%",
-                padding: "16px 22px",
-                borderRadius: "16px",
-                background: "linear-gradient(135deg,#F57C00,#FF9800)",
-                color: "#fff",
-                textDecoration: "none",
-                fontWeight: 950,
-                boxShadow: "0 16px 34px rgba(245,124,0,.28)",
-              }}
-            >
-              <MessageCircle size={21} />
-              Solicitar este serviço pelo WhatsApp
-            </a>
           </div>
-
-          <style>{`
-            @keyframes modalEnter {
-              from {
-                opacity: 0;
-                transform: translateY(18px) scale(.98);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-              }
-            }
-          `}</style>
         </div>
       )}
+
+      <style jsx>{`
+        .services-section {
+          width: 100%;
+          padding: 110px 5.8vw;
+          background: #fff;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .services-container {
+          width: 100%;
+          max-width: 1320px;
+          margin: 0 auto;
+        }
+
+        .services-header {
+          text-align: center;
+          max-width: 850px;
+          margin: 0 auto 70px;
+        }
+
+        .services-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 18px;
+          border-radius: 999px;
+          background: #fff4e8;
+          border: 1px solid rgba(245, 124, 0, 0.25);
+          color: #f57c00;
+          font-weight: 800;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          margin-bottom: 18px;
+        }
+
+        .services-header h2 {
+          font-size: clamp(2rem, 3.2vw, 3.5rem);
+          line-height: 1.08;
+          color: #5d4037;
+          font-weight: 950;
+          letter-spacing: -1.5px;
+          margin-bottom: 18px;
+        }
+
+        .services-header p {
+          color: #6d4c41;
+          font-size: 1.05rem;
+          line-height: 1.75;
+          margin: 0;
+        }
+
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 26px;
+        }
+
+        .service-card {
+          height: 100%;
+          background: linear-gradient(180deg, #fff 0%, #fff9f3 100%);
+          border-radius: 28px;
+          padding: 32px;
+          border: 1px solid rgba(245, 124, 0, 0.12);
+          box-shadow: 0 18px 45px rgba(0, 0, 0, 0.05);
+          transition: 0.3s;
+        }
+
+        .service-icon {
+          width: 65px;
+          height: 65px;
+          border-radius: 18px;
+          background: linear-gradient(135deg, #f57c00, #ff9800);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          margin-bottom: 22px;
+          box-shadow: 0 15px 30px rgba(245, 124, 0, 0.25);
+        }
+
+        .service-card h3 {
+          color: #5d4037;
+          font-size: 1.35rem;
+          font-weight: 900;
+          margin-bottom: 12px;
+        }
+
+        .service-card p {
+          color: #6d4c41;
+          line-height: 1.8;
+          margin-bottom: 24px;
+        }
+
+        .service-more-btn {
+          border: none;
+          background: transparent;
+          padding: 0;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #f57c00;
+          font-weight: 900;
+          font-size: 1rem;
+          transition: 0.25s;
+        }
+
+        .service-more-btn:hover {
+          transform: translateX(5px);
+        }
+
+        .services-alert {
+          margin-top: 60px;
+          background: linear-gradient(90deg, #bf6a2a, #f57c00);
+          border-radius: 30px;
+          padding: 40px;
+          color: #fff;
+          text-align: center;
+        }
+
+        .services-alert h3 {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+          font-weight: 900;
+          margin-bottom: 10px;
+        }
+
+        .services-alert p {
+          font-size: 1.05rem;
+          opacity: 0.95;
+          margin: 0;
+        }
+
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          background: rgba(44, 28, 22, 0.62);
+          backdrop-filter: blur(8px);
+          padding: 18px;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-scroll {
+          min-height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 22px 0;
+        }
+
+        .modal-card {
+          width: min(100%, 760px);
+          max-height: calc(100vh - 44px);
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          background: linear-gradient(180deg, #ffffff 0%, #fff8f1 100%);
+          border-radius: 30px;
+          padding: 34px;
+          position: relative;
+          box-shadow: 0 35px 90px rgba(0, 0, 0, 0.28);
+          border: 1px solid rgba(245, 124, 0, 0.18);
+          animation: modalEnter 0.25s ease;
+        }
+
+        .modal-close {
+          position: sticky;
+          top: 0;
+          margin-left: auto;
+          width: 42px;
+          height: 42px;
+          border-radius: 14px;
+          border: 1px solid rgba(93, 64, 55, 0.12);
+          background: #fff;
+          color: #5d4037;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 20;
+          box-shadow: 0 10px 24px rgba(93, 64, 55, 0.12);
+        }
+
+        .modal-icon {
+          width: 70px;
+          height: 70px;
+          border-radius: 22px;
+          background: linear-gradient(135deg, #f57c00, #ff9800);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          margin-bottom: 24px;
+          box-shadow: 0 15px 35px rgba(245, 124, 0, 0.28);
+        }
+
+        .modal-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #f57c00;
+          font-size: 0.8rem;
+          font-weight: 900;
+          letter-spacing: 0.7px;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+        }
+
+        .modal-card h3 {
+          color: #5d4037;
+          font-size: clamp(1.8rem, 4vw, 3rem);
+          line-height: 1.08;
+          font-weight: 950;
+          letter-spacing: -1px;
+          margin: 0 0 18px;
+        }
+
+        .modal-text {
+          color: #6d4c41;
+          font-size: 1.05rem;
+          line-height: 1.75;
+          font-weight: 600;
+          margin: 0 0 26px;
+        }
+
+        .modal-items {
+          display: grid;
+          gap: 12px;
+          margin-bottom: 30px;
+        }
+
+        .modal-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          color: #5d4037;
+          font-weight: 800;
+          line-height: 1.5;
+        }
+
+        .modal-item svg {
+          color: #f57c00;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .modal-whatsapp {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          padding: 16px 22px;
+          border-radius: 16px;
+          background: linear-gradient(135deg, #f57c00, #ff9800);
+          color: #fff;
+          text-decoration: none;
+          font-weight: 950;
+          box-shadow: 0 16px 34px rgba(245, 124, 0, 0.28);
+        }
+
+        @keyframes modalEnter {
+          from {
+            opacity: 0;
+            transform: translateY(18px) scale(0.98);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .services-section {
+            padding: 78px 18px;
+          }
+
+          .services-header {
+            margin-bottom: 48px;
+          }
+
+          .services-header h2 {
+            font-size: clamp(1.8rem, 8vw, 2.45rem);
+            letter-spacing: -1px;
+          }
+
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .service-card {
+            padding: 26px;
+            border-radius: 24px;
+          }
+
+          .services-alert {
+            padding: 30px 22px;
+            border-radius: 24px;
+          }
+
+          .modal-overlay {
+            padding: 0;
+          }
+
+          .modal-scroll {
+            align-items: flex-end;
+            padding: 0;
+          }
+
+          .modal-card {
+            width: 100%;
+            max-height: 88vh;
+            border-radius: 26px 26px 0 0;
+            padding: 22px 20px 24px;
+          }
+
+          .modal-close {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            top: 0;
+          }
+
+          .modal-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+          }
+
+          .modal-card h3 {
+            font-size: clamp(1.6rem, 8vw, 2.2rem);
+            line-height: 1.12;
+          }
+
+          .modal-text {
+            font-size: 0.98rem;
+            line-height: 1.65;
+          }
+
+          .modal-whatsapp {
+            padding: 15px 18px;
+            font-size: 0.92rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }
