@@ -7,9 +7,9 @@ import {
   ClipboardCheck,
   Home,
   ShieldCheck,
+  MessageCircle,
 } from "lucide-react";
 import Header from "./Header";
-import WhatsappButton from "./WhatsappButton";
 
 export default function HeroSection() {
   const problemas = [
@@ -20,9 +20,9 @@ export default function HeroSection() {
   ];
 
   const selos = [
-    { icon: <ClipboardCheck size={16} />, text: "Laudo completo" },
-    { icon: <Camera size={16} />, text: "Fotos no relatório" },
-    { icon: <Home size={16} />, text: "Entrega, compra e locação" },
+    { icon: <ClipboardCheck size={15} />, text: "Laudo completo" },
+    { icon: <Camera size={15} />, text: "Fotos no relatório" },
+    { icon: <Home size={15} />, text: "Entrega, compra e locação" },
   ];
 
   return (
@@ -34,97 +34,31 @@ export default function HeroSection() {
         position: "relative",
         overflow: "hidden",
         background:
-          "linear-gradient(180deg, #FFF9F2 0%, #F6EFE8 52%, #F1E4D8 100%)",
+          "linear-gradient(180deg, #FFF9F2 0%, #F6EFE8 55%, #F1E4D8 100%)",
       }}
     >
-      <style jsx>{`
-        .hero-primary-btn,
-        .hero-secondary-btn,
-        .hero-check-item,
-        .hero-trust-item,
-        .hero-image-card {
-          transition: all 0.28s ease;
-        }
-
-        .hero-primary-btn:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 18px 36px rgba(245, 124, 0, 0.34) !important;
-          filter: brightness(1.04);
-        }
-
-        .hero-secondary-btn:hover {
-          transform: translateY(-3px);
-          border-color: rgba(245, 124, 0, 0.5) !important;
-          color: #f57c00 !important;
-          box-shadow: 0 14px 30px rgba(93, 64, 55, 0.12);
-        }
-
-        .hero-check-item:hover {
-          transform: translateX(8px);
-          color: #f57c00 !important;
-        }
-
-        .hero-trust-item:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 24px rgba(93, 64, 55, 0.1);
-        }
-
-        .hero-image-card:hover {
-          transform: translateY(-8px) scale(1.01);
-          box-shadow: 0 28px 70px rgba(93, 64, 55, 0.18) !important;
-        }
-
-        @media (max-width: 980px) {
-          .hero-grid-inline {
-            grid-template-columns: 1fr !important;
-            padding: 42px 22px 0 !important;
-            text-align: center;
-          }
-
-          .hero-text-inline {
-            max-width: 100% !important;
-            margin: 0 auto !important;
-          }
-
-          .hero-actions-inline,
-          .hero-trust-inline {
-            justify-content: center !important;
-          }
-
-          .hero-image-wrap-inline {
-            justify-content: center !important;
-          }
-
-          .hero-title-inline {
-            font-size: clamp(2.4rem, 12vw, 4.2rem) !important;
-            letter-spacing: -2px !important;
-          }
-        }
-      `}</style>
-
       <Header />
 
       <div
-        className="hero-grid-inline"
         style={{
           width: "100%",
-          minHeight: "calc(100vh - 92px)",
+          minHeight: "calc(100vh - 74px)",
           display: "grid",
-          gridTemplateColumns: "0.9fr 1.1fr",
+          gridTemplateColumns: "minmax(0, 0.95fr) minmax(360px, 0.85fr)",
           alignItems: "center",
-          gap: "48px",
-          padding: "44px 5.8vw 0",
+          gap: "42px",
+          padding: "42px clamp(20px, 5.5vw, 96px) 34px",
           position: "relative",
           zIndex: 2,
         }}
       >
         <motion.div
-          className="hero-text-inline"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, ease: "easeOut" }}
           style={{
-            maxWidth: "560px",
+            width: "100%",
+            maxWidth: "600px",
           }}
         >
           <motion.span
@@ -153,16 +87,15 @@ export default function HeroSection() {
           </motion.span>
 
           <motion.h1
-            className="hero-title-inline"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.25 }}
             style={{
-              fontSize: "clamp(3rem, 4.55vw, 5.15rem)",
-              lineHeight: "0.98",
+              fontSize: "clamp(2.55rem, 4.4vw, 4.8rem)",
+              lineHeight: "1.01",
               fontWeight: 950,
               color: "#5D4037",
-              letterSpacing: "-3px",
+              letterSpacing: "-2.6px",
               margin: "0 0 20px",
             }}
           >
@@ -174,12 +107,12 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
             style={{
-              fontSize: "1.08rem",
+              fontSize: "1.05rem",
               lineHeight: 1.7,
               color: "#6D4C41",
               fontWeight: 650,
               margin: "0 0 24px",
-              maxWidth: "540px",
+              maxWidth: "560px",
             }}
           >
             Depois da entrega, reclamar fica muito mais difícil. Faça uma
@@ -193,12 +126,11 @@ export default function HeroSection() {
             style={{
               display: "grid",
               gap: "10px",
-              marginBottom: "28px",
+              marginBottom: "26px",
             }}
           >
             {problemas.map((item, index) => (
               <motion.div
-                className="hero-check-item"
                 key={item}
                 initial={{ opacity: 0, x: -18 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -219,7 +151,6 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            className="hero-actions-inline"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.78 }}
@@ -231,22 +162,68 @@ export default function HeroSection() {
               marginBottom: "22px",
             }}
           >
-            <div className="hero-primary-btn" style={{ borderRadius: "14px" }}>
-              <WhatsappButton>Solicitar vistoria agora</WhatsappButton>
-            </div>
+            <a
+              href="https://wa.me/5521981080434"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "9px",
+                minHeight: "52px",
+                padding: "15px 24px",
+                borderRadius: "15px",
+                background: "linear-gradient(135deg, #F57C00 0%, #FF9800 100%)",
+                color: "#fff",
+                textDecoration: "none",
+                fontSize: "0.98rem",
+                fontWeight: 900,
+                boxShadow: "0 16px 34px rgba(245,124,0,.28)",
+                transition: "all .25s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow =
+                  "0 22px 42px rgba(245,124,0,.36)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 16px 34px rgba(245,124,0,.28)";
+              }}
+            >
+              <MessageCircle size={20} />
+              Solicitar vistoria agora
+            </a>
 
             <a
-              className="hero-secondary-btn"
               href="#servicos"
               style={{
-                padding: "14px 22px",
-                borderRadius: "14px",
-                border: "1px solid rgba(93,64,55,.2)",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "52px",
+                padding: "15px 24px",
+                borderRadius: "15px",
+                border: "1px solid rgba(93,64,55,.18)",
                 background: "#FFFFFF",
                 color: "#5D4037",
+                fontSize: "0.98rem",
                 fontWeight: 850,
                 textDecoration: "none",
                 boxShadow: "0 10px 28px rgba(93,64,55,.06)",
+                transition: "all .25s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.color = "#F57C00";
+                e.currentTarget.style.borderColor = "rgba(245,124,0,.45)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.color = "#5D4037";
+                e.currentTarget.style.borderColor = "rgba(93,64,55,.18)";
               }}
             >
               Conhecer serviços
@@ -254,7 +231,6 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            className="hero-trust-inline"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.9 }}
@@ -266,7 +242,6 @@ export default function HeroSection() {
           >
             {selos.map((item) => (
               <span
-                className="hero-trust-item"
                 key={item.text}
                 style={{
                   display: "inline-flex",
@@ -274,11 +249,11 @@ export default function HeroSection() {
                   gap: "7px",
                   padding: "9px 12px",
                   borderRadius: "999px",
-                  background: "rgba(255,255,255,.78)",
+                  background: "rgba(255,255,255,.82)",
                   border: "1px solid rgba(93,64,55,.12)",
                   color: "#6D4C41",
                   fontWeight: 750,
-                  fontSize: ".84rem",
+                  fontSize: ".82rem",
                   backdropFilter: "blur(8px)",
                 }}
               >
@@ -290,16 +265,14 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="hero-image-wrap-inline"
           initial={{ opacity: 0, x: 34, scale: 0.97 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.75, ease: "easeOut", delay: 0.18 }}
           style={{
             width: "100%",
-            height: "100%",
-            minHeight: "560px",
+            minHeight: "480px",
             display: "flex",
-            alignItems: "flex-end",
+            alignItems: "center",
             justifyContent: "flex-end",
             position: "relative",
           }}
@@ -307,10 +280,10 @@ export default function HeroSection() {
           <div
             aria-hidden="true"
             style={{
-              width: "360px",
-              height: "360px",
+              width: "330px",
+              height: "330px",
               borderRadius: "50%",
-              background: "rgba(245,124,0,.16)",
+              background: "rgba(245,124,0,.15)",
               filter: "blur(42px)",
               position: "absolute",
               right: "8%",
@@ -320,16 +293,15 @@ export default function HeroSection() {
           />
 
           <div
-            className="hero-image-card"
             style={{
-              width: "min(100%, 700px)",
-              height: "min(69vh, 640px)",
-              minHeight: "500px",
-              borderRadius: "34px 34px 0 0",
+              width: "min(100%, 580px)",
+              height: "min(62vh, 550px)",
+              minHeight: "430px",
+              borderRadius: "32px",
               overflow: "hidden",
               position: "relative",
               zIndex: 1,
-              boxShadow: "0 24px 60px rgba(93,64,55,.13)",
+              boxShadow: "0 24px 58px rgba(93,64,55,.13)",
               border: "1px solid rgba(245,124,0,.15)",
               background: "#F5EFE8",
             }}
@@ -341,7 +313,7 @@ export default function HeroSection() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                objectPosition: "center bottom",
+                objectPosition: "center center",
               }}
             />
 
@@ -351,11 +323,11 @@ export default function HeroSection() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                padding: "18px 22px",
+                padding: "16px 20px",
                 background:
-                  "linear-gradient(90deg, rgba(191,106,42,.95), rgba(245,124,0,.95))",
+                  "linear-gradient(90deg, rgba(191,106,42,.96), rgba(245,124,0,.96))",
                 color: "#fff",
-                fontSize: "1.12rem",
+                fontSize: "1rem",
                 fontWeight: 900,
                 textAlign: "center",
                 textShadow: "0 2px 8px rgba(0,0,0,.18)",
@@ -366,6 +338,83 @@ export default function HeroSection() {
           </div>
         </motion.div>
       </div>
+
+      <style>{`
+        @media (max-width: 1050px) {
+          #inicio > div {
+            grid-template-columns: 1fr !important;
+            gap: 34px !important;
+            padding: 42px 22px 34px !important;
+            text-align: center !important;
+          }
+
+          #inicio h1 {
+            font-size: clamp(2.35rem, 9vw, 4rem) !important;
+            letter-spacing: -1.8px !important;
+          }
+
+          #inicio p {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          #inicio > div > div:first-child {
+            margin: 0 auto !important;
+          }
+        }
+
+        @media (max-width: 720px) {
+          #inicio {
+            min-height: auto !important;
+          }
+
+          #inicio > div {
+            min-height: auto !important;
+            padding-top: 34px !important;
+          }
+
+          #inicio h1 {
+            font-size: clamp(2.2rem, 11vw, 3.35rem) !important;
+            line-height: 1.04 !important;
+          }
+
+          #inicio a[href*="wa.me"],
+          #inicio a[href="#servicos"] {
+            width: 100% !important;
+            max-width: 340px !important;
+            margin: 0 auto !important;
+          }
+
+          #inicio > div > div:last-child {
+            min-height: 390px !important;
+            justify-content: center !important;
+          }
+
+          #inicio > div > div:last-child > div:last-child {
+            width: 100% !important;
+            max-width: 390px !important;
+            height: 420px !important;
+            min-height: 420px !important;
+            border-radius: 26px !important;
+          }
+        }
+
+        @media (max-width: 460px) {
+          #inicio > div {
+            padding-left: 18px !important;
+            padding-right: 18px !important;
+          }
+
+          #inicio h1 {
+            font-size: 2.35rem !important;
+          }
+
+          #inicio > div > div:last-child > div:last-child {
+            height: 360px !important;
+            min-height: 360px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
